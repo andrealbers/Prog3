@@ -34,7 +34,7 @@ void aufgabe2(void) {
 
 	for (int i = 0; i < 10; i++) {
 		ptrZahlen[i] = i * 1.1;
-		cout << "ptrZahlen[" << i << "]" << " Adresse: " << &ptrZahlen[i] << ". Wert: " << ptrZahlen[i] << endl;
+		cout << "ptrZahlen[" << i << "] Adresse: " << &ptrZahlen[i] << " Wert: " << ptrZahlen[i] << endl;
 	}
 
 	delete[] ptrZahlen;
