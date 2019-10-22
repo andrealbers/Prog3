@@ -7,11 +7,11 @@ using namespace std;
 
 class Fahrrad {
 public:
-	Fahrrad();
 	Fahrrad(string marke, string modell, int modellJahr, double preis);
+	~Fahrrad() {};
+	
 	void nenneMarkeModell();
-	~Fahrrad();
-
+	
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }
 	int  getModellJahr()const { return modellJahr; }
