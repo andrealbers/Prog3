@@ -1,3 +1,16 @@
+/*
+Aufgabe1
+Autor: André Albers
+Unterschied private und public: 
+	-private: Datenelemente sind innerhalb der Klasse verfügbar
+	-public: Dazu noch außerhalb zugreifbar
+Wie von außen zugriff auf private Datenelemente?
+	-durch get-Methoden, methode gibt als return das private Datenelemente zurück
+Gemeinsamkeiten/Unterschiede Funktionen und Methoden:
+	-*/
+
+
+
 #include <vector>
 #include "fahrrad.h"
 
