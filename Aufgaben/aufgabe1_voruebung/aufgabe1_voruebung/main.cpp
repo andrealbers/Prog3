@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
+#include "klasse.h"
 
 using namespace std;
 
@@ -27,7 +30,7 @@ void aufgabe1(void) {
 void aufgabe2(void) {
 	/*
 	Welche Vorteile bieten new/delete gegenüber malloc()/free() und was sind die Unterschiede?
-
+	new/delete erstellen Konstruktoren bzw. rufen Destruktoren auf -> malloc gibt pointer auf reservierten Speicher zurück; malloc gibt pointer mit dem typ void zurück
 	*/
 	double* ptrZahlen = new double[10];
 	cout << "Pointer auf Pointer Adresse: " << &ptrZahlen << endl;
@@ -64,6 +67,41 @@ void aufgabe3(void) {
 	return;
 }
 
+void aufgabe4(void) {
+	klasse standard;
+	klasse honda(8000, 1.1);
+	honda.ausgabe();
+
+	return;
+}
+
+void aufgabe5(void) {
+	vector<klasse> vecObjekt;
+	for(int i = 0; i < 10; i++) {
+		vecObjekt.push_back(klasse(i, i *0.1));
+		cout << "Preis: " << vecObjekt.at(i).getPreis() << "\tModell: " << vecObjekt.at(i).getModell() << endl << endl;
+	}
+
+	return;
+}
+
+void aufgabe6(void) {
+	string leszeile, pfad = "voruebung.txt";
+	ifstream textdat(pfad);
+	
+	if (textdat.is_open()) {
+		cout << "Datei wurde geoeffnet!\nDer Inhalt der Datei mit dem Pfad:" << pfad << " ist: " << endl;
+		while ((textdat.good()) && (leszeile.empty())) {
+			getline(textdat, leszeile);
+			cout << leszeile << endl;
+		}
+		textdat.close();
+	}
+	else { cout << "Fehler beim Oeffnen der Datei. Datei nicht vorhanden?"; }
+	
+	return;
+}
+
 int main(void) {
 	cout << "**************************************************\nAufgabe 1:" << endl;
 	aufgabe1();
@@ -71,6 +109,12 @@ int main(void) {
 	aufgabe2();
 	cout << "**************************************************\nAufgabe 3:" << endl;
 	aufgabe3();
-
+	cout << "**************************************************\nAufgabe 4:" << endl;
+	aufgabe4();
+	cout << "**************************************************\nAufgabe 5:" << endl;
+	aufgabe5();
+	cout << "**************************************************\nAufgabe 6:" << endl;
+	aufgabe6();	
+	cout << "**************************************************" << endl;
 	return 0;
 }
