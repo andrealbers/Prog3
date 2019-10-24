@@ -17,13 +17,14 @@ void aufgabe1(void) {
 		cin >> neugroesse;
 		int *zahlen = malloc(neugroesse*sizeof(int));  //Abfangen bei neugroesse==NULL
 	*/
-	int zahlen[10];
+	const int ZAHLENSIZE = 10;
+	int zahlen[ZAHLENSIZE];
 
-	for (int i = 0; i < 10; i++) {									
+	for (int i = 0; i < ZAHLENSIZE; i++) {
 		zahlen[i] = i + 1;
 		cout << "zahlen[" << i << "] Wert: " << zahlen[i] << endl;
 	}
-
+	
 	return;
 }
 
@@ -32,10 +33,11 @@ void aufgabe2(void) {
 	Welche Vorteile bieten new/delete gegenüber malloc()/free() und was sind die Unterschiede?
 	new/delete erstellen Konstruktoren bzw. rufen Destruktoren auf -> malloc gibt pointer auf reservierten Speicher zurück; malloc gibt pointer mit dem typ void zurück
 	*/
-	double* ptrZahlen = new double[10];
+	const double PTRZAHLENSIZE = 10;
+	double* ptrZahlen = new double[PTRZAHLENSIZE];
 	cout << "Pointer auf Pointer Adresse: " << &ptrZahlen << endl;
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < PTRZAHLENSIZE; i++) {
 		ptrZahlen[i] = i * 1.1;
 		cout << "ptrZahlen[" << i << "]" << " Adresse: " << &ptrZahlen[i] << ". Wert: " << ptrZahlen[i] << endl;
 	}
@@ -56,12 +58,12 @@ void aufgabe3(void) {
 	*/
 	vector<double> vectorzahlen(0);
 	cout << "vectorzahlen Groesse vor Zuweisung: " << vectorzahlen.size() << endl;
-	
+
 	for (int i = 0; i < 10; i++) {
 		vectorzahlen.push_back(i);
 		cout << "vectorzahlen[" << i << "] Wert: " << vectorzahlen[i] << endl;
 	}
-	
+
 	cout << "vectorzahlen Groesse nach Zuweisung: " << vectorzahlen.size() << endl;
 
 	return;
@@ -77,8 +79,8 @@ void aufgabe4(void) {
 
 void aufgabe5(void) {
 	vector<klasse> vecObjekt;
-	for(int i = 0; i < 10; i++) {
-		vecObjekt.push_back(klasse(i, i *0.1));
+	for (int i = 0; i < 10; i++) {
+		vecObjekt.push_back(klasse(i, i * 0.1));
 		cout << "Preis: " << vecObjekt.at(i).getPreis() << "\tModell: " << vecObjekt.at(i).getModell() << endl << endl;
 	}
 
@@ -87,8 +89,8 @@ void aufgabe5(void) {
 
 void aufgabe6(void) {
 	string leszeile, pfad = "voruebung.txt";
-	ifstream textdat(pfad);
-	
+	fstream textdat(pfad);
+
 	if (textdat.is_open()) {
 		cout << "Datei wurde geoeffnet!\nDer Inhalt der Datei mit dem Pfad:" << pfad << " ist: " << endl;
 		while ((textdat.good()) && (leszeile.empty())) {
@@ -97,8 +99,8 @@ void aufgabe6(void) {
 		}
 		textdat.close();
 	}
-	else { cout << "Fehler beim Oeffnen der Datei. Datei nicht vorhanden?"; }
-	
+	else { cout << "Fehler beim Oeffnen der Datei. Datei nicht vorhanden?\n"; }
+
 	return;
 }
 
@@ -114,7 +116,7 @@ int main(void) {
 	cout << "**************************************************\nAufgabe 5:" << endl;
 	aufgabe5();
 	cout << "**************************************************\nAufgabe 6:" << endl;
-	aufgabe6();	
+	aufgabe6();
 	cout << "**************************************************" << endl;
 	return 0;
 }

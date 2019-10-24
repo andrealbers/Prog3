@@ -7,7 +7,8 @@ Unterschied private und public:
 Wie von außen zugriff auf private Datenelemente?
 	-durch get-Methoden, methode gibt als return das private Datenelemente zurück
 Gemeinsamkeiten/Unterschiede Funktionen und Methoden:
-	-*/
+	- Methoden sind Funktionen aber eine Funktion muss keine Methode sein
+*/
 
 
 
