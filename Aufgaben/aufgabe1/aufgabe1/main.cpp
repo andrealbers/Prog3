@@ -1,5 +1,6 @@
 /*
 Aufgabe1
+Datum: 24.10.19
 Autor: André Albers
 Unterschied private und public: 
 	-private: Datenelemente sind innerhalb der Klasse verfügbar
