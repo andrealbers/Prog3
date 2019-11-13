@@ -10,7 +10,7 @@ public:
 	Fahrrad(string marke, string modell, int modellJahr, double preis);
 	~Fahrrad() {};
 	
-	void nenneMarkeModell();
+	void nenneMarkeModell(void);
 	
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }
@@ -24,5 +24,6 @@ private:
 	int modellJahr;
 	double preis;
 };
+
 
 #endif 

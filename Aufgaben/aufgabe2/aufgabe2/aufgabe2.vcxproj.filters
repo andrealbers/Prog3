@@ -21,9 +21,15 @@
     <ClCompile Include="fahrrad.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="FahrradLaden.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fahrrad.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FahrradLaden.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

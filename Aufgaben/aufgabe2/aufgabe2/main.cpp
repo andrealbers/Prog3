@@ -1,33 +1,46 @@
 /*
 Aufgabe2
-Datum: 12.11.19
+Datum: 14.11.19
 Autor: André Albers
-Unterschied private und public: 
-	-private: Datenelemente sind innerhalb der Klasse verfügbar
-	-public: Dazu noch außerhalb zugreifbar
-Wie von außen zugriff auf private Datenelemente?
-	-durch get-Methoden, methode gibt als return das private Datenelemente zurück
-Gemeinsamkeiten/Unterschiede Funktionen und Methoden:
-	- Methoden sind Funktionen aber eine Funktion muss keine Methode sein
+Welche Art von Kontrollstruktur erlaubt es, die Menüführung später möglichst einfach erweitern zu können? Nennen Sie die Vor- und Nachteile gegenüber anderen Abfragen:
+	-switch-case. Vorteil: Leserlich, leicht erweiterbar; Nachteil: Nur exakter Wert kann verglichen werden. ((x > 10)&&(x < 20)) nicht möglich.
+Warum wird an dieser Stelle ein vector genutzt und kein herkömmliches C-Array?:
+	-Leicht erweiterbar, Eigenschaften des vectors leicht ermittelbar (size, ..), at() sicherer.., dynamisch
+Was würde passieren, wenn Sie Ihre Methode void nenneMarkeModell(void) als private Methode der Klasse Fahrrad schreiben?:
+	- Methode ist von außen nicht sichtbar -> eigene Methode zur Ausgabe in FahrradLaden nötig, viel aufwendiger
 */
 
 
-
 #include <vector>
+#include <iostream>
 #include "fahrrad.h"
+#include "FahrradLaden.h"
 
 using namespace std;
 
 int main(void) {
-	vector<Fahrrad> vecFahrrad;
-	vecFahrrad.push_back(Fahrrad("Marke1", "Modell1", 2001, 1000.10)); //Fahrrad::Fahrrad(string marke, string modell, int modellJahr, double preis)
-	vecFahrrad.push_back(Fahrrad("Marke2", "Modell2", 2002, 2000.20));
-	vecFahrrad.push_back(Fahrrad("Marke3", "Modell3", 3003, 3000.30));
-	
-	//vecFahrrad.shrink_to_fit();
-	for (int i = 0; i < vecFahrrad.size(); i++) {
-		vecFahrrad.at(i).nenneMarkeModell();
+	string eingabeMarke;
+	int eingabeMenu;
+
+	FahrradLaden Katalog;
+	cout << "\n\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen" << endl;
+	cin >> eingabeMenu;
+	switch (eingabeMenu) {
+	case 0:
+		return 0;
+	case 1:
+		Katalog.vectorAusgabe(1);
+		break;
+	case 2:
+		cout << "Welche Marke moechten Sie suchen?" << endl;
+		cin >> eingabeMarke;
+		Katalog.sucheMarke(eingabeMarke);
+		Katalog.vectorAusgabe(2);
+		break;
+	default:
+		cout << "Fehler bei der Eingabe!" << endl;
 	}
+
 
 	return 0;
 }
