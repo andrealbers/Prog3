@@ -50,41 +50,44 @@ FahrradLaden::FahrradLaden() {
 				vecFahrradKatalog.push_back(Fahrrad(marke, modell, modellJahr, preis));
 			}
 		}
-		textdat.close();
 		std::cout << "Anzahl eingelesender Elemente: " << vecFahrradKatalog.size() << endl;
 	}
 	else { std::cout << "Fehler beim Oeffnen der Datei!\n"; }
 }
 
-void FahrradLaden::vectorAusgabe(int listentyp) {
-	
-	switch(listentyp) {
-		case 1:
-			for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
-				vecFahrradKatalog.at(i).nenneMarkeModell();
-			}
+void printListe(const vector<Fahrrad>& liste) {
+	for (unsigned int i = 0; i < liste.size(); i++) {
+		liste.at(i).nenneMarkeModell();
+	}
+}
+
+void FahrradLaden::vectorAusgabe(Auswahl listentyp) {
+	switch (listentyp) {
+		case ALLES:
+			printListe(vecFahrradKatalog);
 			break;
-		case 2:
-			for (unsigned int i = 0; i < vecSuchergebnisse.size(); i++) {
-				vecSuchergebnisse.at(i).nenneMarkeModell();
-			}
-			break;
-		default:
-			cout << "Fehler bei der Uebergabe von listentyp an vectorAusgabe!" << endl;
-	}			
+		case TEIL:
+			printListe(vecSuchergebnisse);
+	}
 }
 
 void FahrradLaden::sucheMarke(string _marke) {
 	int i = 0;
-	
+	string marke;
+	vecSuchergebnisse.clear();
+
 	for (int i = 0; i < _marke.size(); i++) {
 		_marke.at(i) = tolower(_marke.at(i));
 	}
-	_marke.at(0) = toupper(_marke.at(0));
 
 	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
-		if (vecFahrradKatalog.at(i).getMarke() == _marke) {
+		marke = vecFahrradKatalog.at(i).getMarke();
+		for (int i = 0; i < marke.size(); i++) {
+			marke.at(i) = tolower(marke.at(i));
+		}
+		if (marke == _marke) {
 			vecSuchergebnisse.push_back(vecFahrradKatalog.at(i));
 		}
-	}	
+	}
+	if (vecSuchergebnisse.size() == 0) cout << "Marke nicht im Katalog!\n";
 }

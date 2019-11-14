@@ -10,37 +10,41 @@ Was würde passieren, wenn Sie Ihre Methode void nenneMarkeModell(void) als priva
 	- Methode ist von außen nicht sichtbar -> eigene Methode zur Ausgabe in FahrradLaden nötig, viel aufwendiger
 */
 
-
 #include <vector>
 #include <iostream>
+#include <iomanip>
 #include "fahrrad.h"
 #include "FahrradLaden.h"
 
 using namespace std;
 
 int main(void) {
-	string eingabeMarke;
 	int eingabeMenu;
+	string eingabeMarke;
 
 	FahrradLaden Katalog;
-	cout << "\n\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen" << endl;
-	cin >> eingabeMenu;
-	switch (eingabeMenu) {
-	case 0:
-		return 0;
-	case 1:
-		Katalog.vectorAusgabe(1);
-		break;
-	case 2:
-		cout << "Welche Marke moechten Sie suchen?" << endl;
-		cin >> eingabeMarke;
-		Katalog.sucheMarke(eingabeMarke);
-		Katalog.vectorAusgabe(2);
-		break;
-	default:
-		cout << "Fehler bei der Eingabe!" << endl;
-	}
 
+	do {
+		cout << setw(60) << setfill('*') << "";
+		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen" << endl;
+		cin >> eingabeMenu;
+
+		switch (eingabeMenu) {
+		case 0:
+			return 0;
+		case 1:
+			Katalog.vectorAusgabe(ALLES);
+			break;
+		case 2:
+			cout << "Welche Marke moechten Sie suchen? ";
+			cin >> eingabeMarke;
+			Katalog.sucheMarke(eingabeMarke);
+			Katalog.vectorAusgabe(TEIL);
+			break;
+		default:
+			cout << "Fehler bei der Eingabe!" << endl;
+		}
+	} while (1);
 
 	return 0;
 }

@@ -2,7 +2,7 @@
 #include <vector>
 #include "fahrrad.h"
 
-using namespace std;
+enum Auswahl {ALLES, TEIL};
 
 class FahrradLaden
 {
@@ -10,7 +10,7 @@ public:
 	FahrradLaden();
 	~FahrradLaden() {};
 
-	void vectorAusgabe(int listentyp);
+	void vectorAusgabe(Auswahl listentyp);
 	void sucheMarke(string _marke);
 protected:
 

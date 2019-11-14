@@ -1,6 +1,4 @@
-#ifndef __FAHRRAD__
-#define __FAHRRAD__
-
+#pragma once
 #include <string>
 
 using namespace std;
@@ -10,7 +8,7 @@ public:
 	Fahrrad(string marke, string modell, int modellJahr, double preis);
 	~Fahrrad() {};
 	
-	void nenneMarkeModell(void);
+	void nenneMarkeModell(void)const;
 	
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }
@@ -24,6 +22,3 @@ private:
 	int modellJahr;
 	double preis;
 };
-
-
-#endif 

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "fahrrad.h"
 
 Fahrrad::Fahrrad(string marke, string modell, int modellJahr, double preis) {
@@ -10,6 +9,6 @@ Fahrrad::Fahrrad(string marke, string modell, int modellJahr, double preis) {
 	this->preis = preis;
 }
 
-void Fahrrad::nenneMarkeModell(void) {
-	cout << "Marke: " << marke << "\t\tModell: " << modell << endl;
+void Fahrrad::nenneMarkeModell(void)const {
+	cout << "Marke: " << marke  << "     \tModell: " << modell << endl;
 }
