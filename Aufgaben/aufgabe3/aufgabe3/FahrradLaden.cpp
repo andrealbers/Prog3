@@ -5,23 +5,23 @@
 FahrradLaden::FahrradLaden() {
 	string leszeile, pfad = "fahrradliste.txt";
 	ifstream textdat(pfad);
-	string marke, modell;
-	int modellJahr, anzWorterLesen = 4;
+	string marke, modell, fahrradtyp;
+	int modellJahr, kapazitat;  
 	double preis;
 
 	if (textdat.is_open()) {
 		std::cout << "Datei " << pfad << " wurde geoeffnet!" << endl;
 
 		while (!textdat.eof()) {
-			int posnow = 0, posvorher = 0, welchesWort = 0;
+			int posnow = 0, posvorher = 0, welchesWort = 0, anzWorterLesen = 5;
 			getline(textdat, leszeile);
-
+			
 			if (leszeile == "\0") {
 				welchesWort = anzWorterLesen;
 			}
 			else {
 				while (welchesWort < anzWorterLesen) {
-					while (leszeile[posnow] != ' ') {
+					while ((leszeile[posnow] != ' ') && (leszeile[posnow] != NULL)) {
 						posnow++;
 					}
 					string wort = leszeile.substr(posvorher, posnow - posvorher);
@@ -39,6 +39,13 @@ FahrradLaden::FahrradLaden() {
 					case 3:
 						preis = stod(wort);
 						break;
+					case 4:
+						fahrradtyp = wort;
+						if (fahrradtyp == "E-Bike") anzWorterLesen = 6;
+						break;
+					case 5:
+						kapazitat = stoi(wort);
+						break;
 					default:
 						std::cout << "Fehler Anzahl Worter!" << endl;
 					}
@@ -47,15 +54,16 @@ FahrradLaden::FahrradLaden() {
 					posnow++;
 					posvorher = posnow;
 				}
-				vecFahrradKatalog.push_back(Fahrrad(marke, modell, modellJahr, preis));
+				if (fahrradtyp == "E-Bike") vecFahrradKatalog.push_back(new E_Bike(marke, modell, modellJahr, preis, kapazitat));
+				else vecFahrradKatalog.push_back(new MTB(marke, modell, modellJahr, preis)); 
 			}
 		}
 		std::cout << "Anzahl eingelesender Elemente: " << vecFahrradKatalog.size() << endl;
 	}
 	else { std::cout << "Fehler beim Oeffnen der Datei!\n"; }
 }
-
-void printListe(const vector<Fahrrad>& liste) {
+/*
+void printListe(const vector<E_Bike>& liste) {
 	for (unsigned int i = 0; i < liste.size(); i++) {
 		liste.at(i).nenneMarkeModell();
 	}
@@ -90,4 +98,4 @@ void FahrradLaden::sucheMarke(string _marke) {
 		}
 	}
 	if (vecSuchergebnisse.size() == 0) cout << "Marke nicht im Katalog!\n";
-}
+}*/

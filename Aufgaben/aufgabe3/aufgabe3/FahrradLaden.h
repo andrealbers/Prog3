@@ -15,7 +15,7 @@ public:
 protected:
 
 private:
-	vector<Fahrrad> vecFahrradKatalog;
-	vector<Fahrrad> vecSuchergebnisse;
+	vector<Fahrrad*> vecFahrradKatalog;
+	vector<Fahrrad*> vecSuchergebnisse;
 };
 

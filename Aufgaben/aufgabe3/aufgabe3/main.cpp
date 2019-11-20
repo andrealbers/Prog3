@@ -19,7 +19,7 @@ int main(void) {
 	string eingabeMarke;
 
 	FahrradLaden Katalog;
-
+	/*
 	do {
 		cout << setw(60) << setfill('*') << "";
 		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen" << endl;
@@ -41,6 +41,6 @@ int main(void) {
 			cout << "Fehler bei der Eingabe!" << endl;
 		}
 	} while (1);
-
+	*/
 	return 0;
 }
