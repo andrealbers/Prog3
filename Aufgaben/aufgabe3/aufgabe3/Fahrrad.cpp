@@ -10,5 +10,5 @@ Fahrrad::Fahrrad(string marke, string modell, int modellJahr, double preis) {
 }
 
 void Fahrrad::nenneMarkeModell(void)const {
-	cout << "Marke: " << marke << "     \tModell: " << modell << endl;
+	cout << "Marke: " << marke << "     \tModell: " << modell <<  endl;
 }

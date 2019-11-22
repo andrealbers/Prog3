@@ -1,14 +1,20 @@
 #pragma once
 #include <string>
-
 using namespace std;
+
+
+
 
 class Fahrrad {
 public:
 	Fahrrad(string marke, string modell, int modellJahr, double preis);
+
+	Fahrrad* cloneFahrrad(Fahrrad* fp) { return fp->clone(); }  //UBERPRUFEN
+
 	~Fahrrad() {};
 
 	void nenneMarkeModell(void)const;
+	Fahrrad* clone() { nenneMarkeModell; }
 
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }
@@ -36,7 +42,7 @@ private:
 
 class E_Bike : public Fahrrad {
 public:
-	E_Bike(string marke, string modell, int modellJahr, double preis, int kapazitat) : Fahrrad(marke, modell, modellJahr, preis), kapazitat(this->kapazitat) {};
+	E_Bike(string marke, string modell, int modellJahr, double preis, int _kapazitat) : Fahrrad(marke, modell, modellJahr, preis), kapazitat(_kapazitat) {}
 	~E_Bike() {};
 
 	int getKapazitat()const { return kapazitat; }
