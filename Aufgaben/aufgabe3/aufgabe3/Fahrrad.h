@@ -1,29 +1,31 @@
 #pragma once
 #include <string>
+#include <map>
 using namespace std;
-
-
 
 
 class Fahrrad {
 public:
 	Fahrrad(string marke, string modell, int modellJahr, double preis);
-
-	Fahrrad* cloneFahrrad(Fahrrad* fp) { return fp->clone(); }  //UBERPRUFEN
-
-	~Fahrrad() {};
+	
+	virtual ~Fahrrad() {};
 
 	void nenneMarkeModell(void)const;
-	Fahrrad* clone() { nenneMarkeModell; }
+
+	Fahrrad* cloneFahrrad(Fahrrad* fp) { return fp->clone(); }
+	virtual Fahrrad* clone() { return new Fahrrad(*this); }
 
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }
 	int  getModellJahr()const { return modellJahr; }
 	double  getPreis()const { return preis; }
 
+	virtual map<string, string> getProperties() const;
+
 protected:
 
 private:
+
 	string marke, modell;
 	int modellJahr;
 	double preis;
@@ -44,8 +46,11 @@ class E_Bike : public Fahrrad {
 public:
 	E_Bike(string marke, string modell, int modellJahr, double preis, int _kapazitat) : Fahrrad(marke, modell, modellJahr, preis), kapazitat(_kapazitat) {}
 	~E_Bike() {};
+	virtual map<string, string> getProperties() const;
+	virtual E_Bike* clone() { return new E_Bike(*this); };
 
 	int getKapazitat()const { return kapazitat; }
+
 protected:
 
 private:

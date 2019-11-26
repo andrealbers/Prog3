@@ -1,6 +1,7 @@
 #include "FahrradLaden.h"
 #include <iostream>
 #include <fstream>
+#include <typeinfo>
 
 FahrradLaden::FahrradLaden() {
 	string leszeile, pfad = "fahrradliste.txt";
@@ -89,15 +90,43 @@ void FahrradLaden::sucheMarke(string _marke) {
 	}
 
 	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
-		marke = vecFahrradKatalog.at(0)->getMarke();
+		marke = vecFahrradKatalog.at(i)->getMarke();
 		for (int i = 0; i < marke.size(); i++) {
 			marke.at(i) = tolower(marke.at(i));
 		}
 		if (marke == _marke) {
 			vecSuchergebnisse.push_back(vecFahrradKatalog.at(i)->cloneFahrrad(vecFahrradKatalog.at(i)));
-
-			//vecSuchergebnisse.push_back(vecFahrradKatalog.at(i));
 		}
 	}
 	if (vecSuchergebnisse.size() == 0) cout << "Marke nicht im Katalog!\n";
 }
+
+void FahrradLaden::sucheTyp(string _typ) {
+	string typ;
+
+	for (unsigned int i = 0; i < _typ.size(); i++) {
+		_typ.at(i) = tolower(_typ.at(i));
+	}
+
+	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
+		typ = typeid(*(vecFahrradKatalog.at(i))).name();
+		typ = typ.substr(6, typ.size());
+		for (int i = 0; i < typ.size(); i++) {
+			typ.at(i) = tolower(typ.at(i));
+		}
+		if (typ == _typ) {
+			map<string, string>mTyp = vecFahrradKatalog.at(i)->cloneFahrrad(vecFahrradKatalog.at(i))->getProperties();
+			
+			//vector <pair<string, string>> vTyp(mTyp.begin(), mTyp.end());
+			//for (int i = 0; i < vTyp.size(); i++) {
+			//	
+			//}
+			
+			for (map<string, string>::const_iterator it = mTyp.begin(), end = mTyp.end(); it != end; ++it) {
+				cout << it->first << ": " << it->second << "    \t";
+			}
+			cout << endl;
+		}
+	}
+}
+

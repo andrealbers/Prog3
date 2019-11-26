@@ -16,13 +16,13 @@ using namespace std;
 
 int main(void) {
 	int eingabeMenu;
-	string eingabeMarke;
+	string eingabeMarke, eingabeTyp;
 
 	FahrradLaden Katalog;
-	
+
 	do {
 		cout << setw(60) << setfill('*') << "";
-		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen" << endl;
+		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen\n3 - nach Fahrrad-Typen suchen" << endl;
 		cin >> eingabeMenu;
 
 		switch (eingabeMenu) {
@@ -36,6 +36,11 @@ int main(void) {
 			cin >> eingabeMarke;
 			Katalog.sucheMarke(eingabeMarke);
 			Katalog.vectorAusgabe(TEIL);
+			break;
+		case 3:
+			cout << "MTB oder E_Bike ausgeben? ";
+			cin >> eingabeTyp;
+			Katalog.sucheTyp(eingabeTyp);
 			break;
 		default:
 			cout << "Fehler bei der Eingabe!" << endl;
