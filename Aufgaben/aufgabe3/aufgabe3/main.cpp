@@ -2,6 +2,7 @@
 Aufgabe3
 Datum: 20.11.19
 Autor: André Albers
+...
 FRAGE:
 	-ANTWORT
 */
