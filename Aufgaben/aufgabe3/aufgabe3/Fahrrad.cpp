@@ -14,23 +14,26 @@ void Fahrrad::nenneMarkeModell(void)const {
 }
 
 map<string, string> Fahrrad::getProperties() const {
-	map<string, string> map1;
-	map1.insert(pair<string, string>("Marke", (this->marke)));
-	map1.insert(pair<string, string>("Modell", (this->modell)));
-	map1.insert(pair<string, string>("Modelljahr", to_string(this->modellJahr)));
-	map1.insert(pair<string, string>("Preis", to_string(this->preis)));
+	string _preis;
+	map<string, string> mFahrrad;
 
-	return map1;
+	mFahrrad["Marke"] = marke;
+	mFahrrad["Modell"] = modell;
+	mFahrrad["Modelljahr"] = to_string(modellJahr);
+
+	_preis = to_string(preis);
+	_preis.erase(_preis.end()-4, _preis.end());
+	_preis.append(" Euro");
+
+	mFahrrad["Preis"] = _preis;
+
+	return mFahrrad;
 }
 
 map<string, string> E_Bike::getProperties() const {
-	map<string, string> map1;
+	map<string, string> mEBike = Fahrrad::getProperties();
 
-	map1.insert(pair<string, string>("Marke", (getMarke())));
-	map1.insert(pair<string, string>("Modell", (getModell())));
-	map1.insert(pair<string, string>("Modelljahr", to_string(getModellJahr())));
-	map1.insert(pair<string, string>("Preis", to_string(getPreis())));
-	map1.insert(pair<string, string>("Kapazitaet", to_string(this->kapazitat)));
+	mEBike["Kapazitat"] = to_string(kapazitat).append(" Wh");
 
-	return map1;
+	return mEBike;
 }

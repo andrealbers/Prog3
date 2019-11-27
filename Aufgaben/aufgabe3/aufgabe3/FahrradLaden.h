@@ -13,6 +13,7 @@ public:
 	void vectorAusgabe(Auswahl listentyp);
 	void sucheMarke(string _marke);
 	void sucheTyp(string _typ);
+
 protected:
 
 private:

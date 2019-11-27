@@ -25,7 +25,6 @@ public:
 protected:
 
 private:
-
 	string marke, modell;
 	int modellJahr;
 	double preis;
@@ -36,6 +35,7 @@ public:
 	MTB(string marke, string modell, int modellJahr, double preis) : Fahrrad(marke, modell, modellJahr, preis) {}
 	~MTB() {};
 
+	//virtual MTB* clone() { return new MTB(*this); }
 protected:
 
 private:
@@ -46,8 +46,9 @@ class E_Bike : public Fahrrad {
 public:
 	E_Bike(string marke, string modell, int modellJahr, double preis, int _kapazitat) : Fahrrad(marke, modell, modellJahr, preis), kapazitat(_kapazitat) {}
 	~E_Bike() {};
-	virtual map<string, string> getProperties() const;
+
 	virtual E_Bike* clone() { return new E_Bike(*this); };
+	virtual map<string, string> getProperties() const;
 
 	int getKapazitat()const { return kapazitat; }
 

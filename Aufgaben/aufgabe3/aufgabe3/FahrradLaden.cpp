@@ -7,7 +7,7 @@ FahrradLaden::FahrradLaden() {
 	string leszeile, pfad = "fahrradliste.txt";
 	ifstream textdat(pfad);
 	string marke, modell, fahrradtyp;
-	int modellJahr, kapazitat;  
+	int modellJahr, kapazitat;
 	double preis;
 
 	if (textdat.is_open()) {
@@ -16,7 +16,7 @@ FahrradLaden::FahrradLaden() {
 		while (!textdat.eof()) {
 			int posnow = 0, posvorher = 0, welchesWort = 0, anzWorterLesen = 5;
 			getline(textdat, leszeile);
-			
+
 			if (leszeile == "\0") {
 				welchesWort = anzWorterLesen;
 			}
@@ -55,7 +55,7 @@ FahrradLaden::FahrradLaden() {
 					posvorher = posnow;
 				}
 				if (fahrradtyp == "E-Bike") vecFahrradKatalog.push_back(new E_Bike(marke, modell, modellJahr, preis, kapazitat));
-				else vecFahrradKatalog.push_back(new MTB(marke, modell, modellJahr, preis)); 				
+				else vecFahrradKatalog.push_back(new MTB(marke, modell, modellJahr, preis));
 			}
 		}
 		std::cout << "Anzahl eingelesender Elemente: " << vecFahrradKatalog.size() << endl;
@@ -63,7 +63,7 @@ FahrradLaden::FahrradLaden() {
 	else { std::cout << "Fehler beim Oeffnen der Datei!\n"; }
 }
 
-void printListe(const vector<Fahrrad*>&liste) {
+void printListe(const vector<Fahrrad*>& liste) {
 	for (unsigned int i = 0; i < liste.size(); i++) {
 		liste.at(i)->nenneMarkeModell();
 	}
@@ -71,12 +71,12 @@ void printListe(const vector<Fahrrad*>&liste) {
 
 void FahrradLaden::vectorAusgabe(Auswahl listentyp) {
 	switch (listentyp) {
-		case ALLES:
-			printListe(vecFahrradKatalog);
-			break;
-		case TEIL:
-			printListe(vecSuchergebnisse);
-			break;
+	case ALLES:
+		printListe(vecFahrradKatalog);
+		break;
+	case TEIL:
+		printListe(vecSuchergebnisse);
+		break;
 	}
 }
 
@@ -111,16 +111,13 @@ void FahrradLaden::sucheTyp(string _typ) {
 	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
 		typ = typeid(*(vecFahrradKatalog.at(i))).name();
 		typ = typ.substr(6, typ.size());
+
 		for (int i = 0; i < typ.size(); i++) {
 			typ.at(i) = tolower(typ.at(i));
 		}
+
 		if (typ == _typ) {
-			map<string, string>mTyp = vecFahrradKatalog.at(i)->cloneFahrrad(vecFahrradKatalog.at(i))->getProperties();
-			
-			//vector <pair<string, string>> vTyp(mTyp.begin(), mTyp.end());
-			//for (int i = 0; i < vTyp.size(); i++) {
-			//	
-			//}
+			map<string, string>mTyp = vecFahrradKatalog.at(i)->getProperties();
 			
 			for (map<string, string>::const_iterator it = mTyp.begin(), end = mTyp.end(); it != end; ++it) {
 				cout << it->first << ": " << it->second << "    \t";
