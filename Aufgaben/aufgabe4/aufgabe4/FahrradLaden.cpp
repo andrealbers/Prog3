@@ -156,10 +156,44 @@ bool vergleicheModelljahre(Fahrrad* a, Fahrrad* b) {
 
 void FahrradLaden::sortModelljahr() {
 	sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), vergleicheModelljahre);
-	
+
 	/*sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), [](Fahrrad* erstes, Fahrrad* zweites) {
 		return (erstes->getModellJahr() < zweites->getModellJahr());
 		});*/
 
 	cout << "Getauscht: " << getauscht << "  Verglichen: " << verglichen << endl;
+}
+
+void FahrradLaden::setPreis() {
+	string eingabeRabattMarke;
+
+	if (vecSuchergebnisse.size() == 0) return;
+	cout << "\nGesuchte Marke rabattieren? Ja/Nein ";
+	cin >> eingabeRabattMarke;
+	if (eingabeRabattMarke != "Ja") return;
+
+	for (int i = 0; i < vecSuchergebnisse.size(); i++) {
+		vecSuchergebnisse.at(i)->ausgeben();
+		cout << endl;
+	}
+
+	double rabatt;
+	cout << "Um wie viel Prozent rabattieren? ";
+	cin >> rabatt;
+
+	string marke = vecSuchergebnisse.at(0)->getMarke();
+	vecSuchergebnisse.clear();
+
+	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
+		if (marke == vecFahrradKatalog.at(i)->getMarke()) {
+			vecFahrradKatalog.at(i)->setPreisFahrrad(rabatt);
+			vecSuchergebnisse.push_back(vecFahrradKatalog.at(i));
+		}
+	}
+
+	for (int i = 0; i < vecSuchergebnisse.size(); i++) {
+		vecSuchergebnisse.at(i)->ausgeben();
+		cout << endl;
+	}
+
 }

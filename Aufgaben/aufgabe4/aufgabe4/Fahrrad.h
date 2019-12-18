@@ -14,7 +14,9 @@ public:
 
 	Fahrrad* cloneFahrrad(Fahrrad* fp) { return fp->clone(); }
 	virtual Fahrrad* clone() { return new Fahrrad(*this); }
-	virtual void ausgeben() {};
+	virtual void ausgeben();
+	void setPreisFahrrad(double& rabatt);
+
 
 	string  getMarke()const { return marke; }
 	string  getModell()const { return modell; }

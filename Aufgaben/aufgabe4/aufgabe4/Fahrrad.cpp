@@ -43,35 +43,52 @@ template <typename T> void ausgabeElement(T t, const int& breite) {
 	cout << left << setw(breite) << setfill(' ') << t;
 }
 
-void MTB::ausgeben() {
-	ausgabeElement("Fahrradtyp", 12);
-	ausgabeElement("Marke", 11);
-	ausgabeElement("Modell", 14);
-	ausgabeElement("Modelljahr", 12);
-	ausgabeElement("Preis [Euro]", 0);
+void headerzeichnen() {
+	ausgabeElement("Fahrradtyp", 15);
+	ausgabeElement("Marke", 15);
+	ausgabeElement("Modell", 15);
+	ausgabeElement("Modelljahr", 15);
+	ausgabeElement("Preis [Euro]", 15);
+	}
+
+void Fahrrad::ausgeben() {
+	headerzeichnen();	
 	cout << endl;
-	ausgabeElement("MTB", 12);
-	ausgabeElement(getMarke(), 11);
-	ausgabeElement(getModell(), 14);
-	ausgabeElement(getModellJahr(), 12);
-	ausgabeElement(getPreis(), 0);
+	ausgabeElement("MTB", 15);
+	ausgabeElement(getMarke(), 15);
+	ausgabeElement(getModell(), 15);
+	ausgabeElement(getModellJahr(), 15);
+	ausgabeElement(getPreis(), 15);
+	cout << endl;
+}
+
+void MTB::ausgeben() {
+	headerzeichnen();
+	cout << endl;
+	ausgabeElement("MTB", 15);
+	ausgabeElement(getMarke(), 15);
+	ausgabeElement(getModell(), 15);
+	ausgabeElement(getModellJahr(), 15);
+	ausgabeElement(getPreis(), 15);
 	cout << endl;
 }
 
 
 void E_Bike::ausgeben() {
-	ausgabeElement("Fahrradtyp", 12);
-	ausgabeElement("Marke", 11);
-	ausgabeElement("Modell", 14); 
- 	ausgabeElement("Modelljahr", 12);
-	ausgabeElement("Kapazitaet[Wh]", 16);
-	ausgabeElement("Preis[Euro]", 0);
+	headerzeichnen();
+	ausgabeElement("Kapazitaet[Wh]", 0);
 	cout << endl;
-	ausgabeElement("MTB", 12);
-	ausgabeElement(getMarke(), 11);
-	ausgabeElement(getModell(), 14);
-	ausgabeElement(getModellJahr(), 12);
-	ausgabeElement(getKapazitat(), 16);
-	ausgabeElement(getPreis(), 0);
+
+	ausgabeElement("MTB", 15);
+	ausgabeElement(getMarke(), 15);
+	ausgabeElement(getModell(), 15);
+	ausgabeElement(getModellJahr(), 15);
+	ausgabeElement(getPreis(), 15);
+	ausgabeElement(getKapazitat(), 0);
 	cout << endl;
+}
+
+void Fahrrad::setPreisFahrrad(double& rabatt) {
+
+	preis = preis * rabatt / 100; 
 }
