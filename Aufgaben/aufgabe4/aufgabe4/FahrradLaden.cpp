@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <typeinfo>
+#include <algorithm>
+
+int getauscht = 0, verglichen = 0;
 
 FahrradLaden::FahrradLaden() {
 	string leszeile, pfad = "fahrradliste.txt";
@@ -89,9 +92,9 @@ void FahrradLaden::sucheMarke(string _marke) {
 		_marke.at(i) = tolower(_marke.at(i));
 	}
 
-	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
+	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
 		marke = vecFahrradKatalog.at(i)->getMarke();
-		for (int i = 0; i < marke.size(); i++) {
+		for (unsigned int i = 0; i < marke.size(); i++) {
 			marke.at(i) = tolower(marke.at(i));
 		}
 		if (marke == _marke) {
@@ -108,11 +111,11 @@ void FahrradLaden::sucheTyp(string _typ) {
 		_typ.at(i) = tolower(_typ.at(i));
 	}
 
-	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
+	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
 		typ = typeid(*(vecFahrradKatalog.at(i))).name();
 		typ = typ.substr(6, typ.size());
 
-		for (int i = 0; i < typ.size(); i++) {
+		for (unsigned int i = 0; i < typ.size(); i++) {
 			typ.at(i) = tolower(typ.at(i));
 		}
 
@@ -134,13 +137,29 @@ void FahrradLaden::sucheModell(string _modell) {
 		_modell.at(i) = tolower(_modell.at(i));
 	}
 
-	for (int i = 0; i < vecFahrradKatalog.size(); i++) {
+	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
 		modell = vecFahrradKatalog.at(i)->getModell();
-		for (int i = 0; i < modell.size(); i++) {
+		for (unsigned int i = 0; i < modell.size(); i++) {
 			modell.at(i) = tolower(modell.at(i));
 		}
 		if (modell == _modell) {
 			vecFahrradKatalog.at(i)->ausgeben();
 		}
 	}
+}
+
+bool vergleicheModelljahre(Fahrrad* a, Fahrrad* b) {
+	if (a->getModellJahr() < b->getModellJahr()) getauscht++;
+	verglichen++;
+	return (a->getModellJahr() < b->getModellJahr());
+}
+
+void FahrradLaden::sortModelljahr() {
+	sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), vergleicheModelljahre);
+	
+	/*sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), [](Fahrrad* erstes, Fahrrad* zweites) {
+		return (erstes->getModellJahr() < zweites->getModellJahr());
+		});*/
+
+	cout << "Getauscht: " << getauscht << "  Verglichen: " << verglichen << endl;
 }

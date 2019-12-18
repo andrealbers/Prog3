@@ -23,7 +23,7 @@ int main(void) {
 
 	do {
 		cout << setw(60) << setfill('*') << "";
-		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen\n3 - nach Fahrrad-Typen suchen\n4 - Modell ausgeben" << endl;
+		cout << "\n0 - Programm beenden\n1 - Kompletten Katalog ausgeben\n2 - Marke suchen\n3 - nach Fahrrad-Typen suchen\n4 - Modell ausgeben\n5 - Modelljahre sortieren" << endl;
 		cin >> eingabeMenu;
 
 		switch (eingabeMenu) {
@@ -48,10 +48,14 @@ int main(void) {
 			cin >> eingabeFahrrad;
 			Katalog.sucheModell(eingabeFahrrad);
 			break;
+		case 5:
+			Katalog.sortModelljahr();
+			break;
 		default:
 			cout << "Fehler bei der Eingabe!" << endl;
 		}
 	} while (1);
 	
+
 	return 0;
 }

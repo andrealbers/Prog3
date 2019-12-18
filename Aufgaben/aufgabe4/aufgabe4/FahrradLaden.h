@@ -10,6 +10,8 @@ public:
 	FahrradLaden();
 	~FahrradLaden() {};
 
+	void sortModelljahr();
+	
 	void vectorAusgabe(Auswahl listentyp);
 	void sucheMarke(string _marke);
 	void sucheTyp(string _typ);
