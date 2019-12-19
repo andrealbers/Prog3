@@ -143,6 +143,7 @@ void FahrradLaden::sucheModell(string _modell) {
 			modell.at(i) = tolower(modell.at(i));
 		}
 		if (modell == _modell) {
+			headerzeichnen();
 			vecFahrradKatalog.at(i)->ausgeben();
 		}
 	}
@@ -171,29 +172,33 @@ void FahrradLaden::setPreis() {
 	cout << "\nGesuchte Marke rabattieren? Ja/Nein ";
 	cin >> eingabeRabattMarke;
 	if (eingabeRabattMarke != "Ja") return;
-
+	
+	headerzeichnen();
 	for (int i = 0; i < vecSuchergebnisse.size(); i++) {
 		vecSuchergebnisse.at(i)->ausgeben();
-		cout << endl;
 	}
 
 	double rabatt;
-	cout << "Um wie viel Prozent rabattieren? ";
+	cout << "\n\nUm wie viel Prozent rabattieren? ";
 	cin >> rabatt;
+	if ((rabatt < 100) && (rabatt > 0)) {
+		string marke = vecSuchergebnisse.at(0)->getMarke();
+		vecSuchergebnisse.clear();
 
-	string marke = vecSuchergebnisse.at(0)->getMarke();
-	vecSuchergebnisse.clear();
-
-	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
-		if (marke == vecFahrradKatalog.at(i)->getMarke()) {
-			vecFahrradKatalog.at(i)->setPreisFahrrad(rabatt);
-			vecSuchergebnisse.push_back(vecFahrradKatalog.at(i));
+		for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) {
+			if (marke == vecFahrradKatalog.at(i)->getMarke()) {
+				vecFahrradKatalog.at(i)->setPreisFahrrad(rabatt);
+				vecSuchergebnisse.push_back(vecFahrradKatalog.at(i));
+			}
 		}
-	}
 
-	for (int i = 0; i < vecSuchergebnisse.size(); i++) {
-		vecSuchergebnisse.at(i)->ausgeben();
-		cout << endl;
-	}
+		headerzeichnen();
 
+		for (int i = 0; i < vecSuchergebnisse.size(); i++) {
+
+			vecSuchergebnisse.at(i)->ausgeben();
+		}
+		cout << "\n\n";
+	}
+	else cout << "Wert muss zwischen 0-100 liegen!" << endl;
 }

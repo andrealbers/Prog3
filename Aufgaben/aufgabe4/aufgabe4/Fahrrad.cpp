@@ -49,34 +49,25 @@ void headerzeichnen() {
 	ausgabeElement("Modell", 15);
 	ausgabeElement("Modelljahr", 15);
 	ausgabeElement("Preis [Euro]", 15);
+	ausgabeElement("Kapazitaet[Wh]", 0);
+	cout << endl << left << setw(89) << setfill('-') << "";
 	}
 
-void Fahrrad::ausgeben() {
-	headerzeichnen();	
-	cout << endl;
-	ausgabeElement("MTB", 15);
-	ausgabeElement(getMarke(), 15);
-	ausgabeElement(getModell(), 15);
-	ausgabeElement(getModellJahr(), 15);
-	ausgabeElement(getPreis(), 15);
-	cout << endl;
-}
-
 void MTB::ausgeben() {
-	headerzeichnen();
+	//headerzeichnen();
 	cout << endl;
 	ausgabeElement("MTB", 15);
 	ausgabeElement(getMarke(), 15);
 	ausgabeElement(getModell(), 15);
 	ausgabeElement(getModellJahr(), 15);
 	ausgabeElement(getPreis(), 15);
-	cout << endl;
+	ausgabeElement('-', 0);
 }
-
 
 void E_Bike::ausgeben() {
-	headerzeichnen();
-	ausgabeElement("Kapazitaet[Wh]", 0);
+	//headerzeichnen();
+	cout << left << setw(75) << setfill(' ');
+	//ausgabeElement("Kapazitaet[Wh]", 0);
 	cout << endl;
 
 	ausgabeElement("MTB", 15);
@@ -85,10 +76,9 @@ void E_Bike::ausgeben() {
 	ausgabeElement(getModellJahr(), 15);
 	ausgabeElement(getPreis(), 15);
 	ausgabeElement(getKapazitat(), 0);
-	cout << endl;
 }
 
 void Fahrrad::setPreisFahrrad(double& rabatt) {
 
-	preis = preis * rabatt / 100; 
+	preis = preis * (1-(rabatt/100)); 
 }

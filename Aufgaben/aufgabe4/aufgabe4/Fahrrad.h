@@ -3,6 +3,7 @@
 #include <map>
 using namespace std;
 
+void headerzeichnen();
 
 class Fahrrad {
 public:
@@ -13,8 +14,9 @@ public:
 	void nenneMarkeModell(void)const;
 
 	Fahrrad* cloneFahrrad(Fahrrad* fp) { return fp->clone(); }
-	virtual Fahrrad* clone() { return new Fahrrad(*this); }
-	virtual void ausgeben();
+	//virtual Fahrrad* clone() { return new Fahrrad(*this); }
+	virtual Fahrrad* clone() = 0;
+	virtual void ausgeben() = 0;
 	void setPreisFahrrad(double& rabatt);
 
 
@@ -39,7 +41,7 @@ public:
 	~MTB() {};
 
 	virtual void ausgeben();
-	//virtual MTB* clone() { return new MTB(*this); }
+	virtual MTB* clone() { return new MTB(*this); }
 protected:
 
 private:

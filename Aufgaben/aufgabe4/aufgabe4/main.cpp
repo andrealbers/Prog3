@@ -1,6 +1,6 @@
 /*
 Aufgabe3
-Datum: 20.11.19
+Datum: 19.12.19
 Autor: André Albers
 ...
 FRAGE:
