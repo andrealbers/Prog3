@@ -132,7 +132,11 @@ void FahrradLaden::sucheTyp(string _typ) {
 
 void FahrradLaden::sucheModell(string _modell) {
 	string modell;
+	headerzeichnen();
 
+	for (unsigned int i = 0; i < vecFahrradKatalog.size(); i++) vecFahrradKatalog.at(i)->ausgeben();
+
+	/*
 	for (unsigned int i = 0; i < _modell.size(); i++) {
 		_modell.at(i) = tolower(_modell.at(i));
 	}
@@ -146,7 +150,8 @@ void FahrradLaden::sucheModell(string _modell) {
 			headerzeichnen();
 			vecFahrradKatalog.at(i)->ausgeben();
 		}
-	}
+	}   */
+	cout << "\n\n";
 }
 
 bool vergleicheModelljahre(Fahrrad* a, Fahrrad* b) {
@@ -156,6 +161,7 @@ bool vergleicheModelljahre(Fahrrad* a, Fahrrad* b) {
 }
 
 void FahrradLaden::sortModelljahr() {
+	getauscht = 0, verglichen = 0;
 	sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), vergleicheModelljahre);
 
 	/*sort(vecFahrradKatalog.begin(), vecFahrradKatalog.end(), [](Fahrrad* erstes, Fahrrad* zweites) {
@@ -166,21 +172,25 @@ void FahrradLaden::sortModelljahr() {
 }
 
 void FahrradLaden::setPreis() {
-	string eingabeRabattMarke;
-
 	if (vecSuchergebnisse.size() == 0) return;
+
 	cout << "\nGesuchte Marke rabattieren? Ja/Nein ";
+	string eingabeRabattMarke;
 	cin >> eingabeRabattMarke;
-	if (eingabeRabattMarke != "Ja") return;
-	
-	headerzeichnen();
-	for (int i = 0; i < vecSuchergebnisse.size(); i++) {
-		vecSuchergebnisse.at(i)->ausgeben();
+
+	for (unsigned int i = 0; (i < 1) && (i < eingabeRabattMarke.size()); i++) {
+		eingabeRabattMarke.at(i) = tolower(eingabeRabattMarke.at(i));
 	}
 
-	double rabatt;
+	if (eingabeRabattMarke != "ja") return;
+
+	headerzeichnen();
+	for (int i = 0; i < vecSuchergebnisse.size(); i++) vecSuchergebnisse.at(i)->ausgeben();
+
 	cout << "\n\nUm wie viel Prozent rabattieren? ";
+	double rabatt;
 	cin >> rabatt;
+
 	if ((rabatt < 100) && (rabatt > 0)) {
 		string marke = vecSuchergebnisse.at(0)->getMarke();
 		vecSuchergebnisse.clear();
@@ -193,11 +203,8 @@ void FahrradLaden::setPreis() {
 		}
 
 		headerzeichnen();
+		for (int i = 0; i < vecSuchergebnisse.size(); i++) vecSuchergebnisse.at(i)->ausgeben();
 
-		for (int i = 0; i < vecSuchergebnisse.size(); i++) {
-
-			vecSuchergebnisse.at(i)->ausgeben();
-		}
 		cout << "\n\n";
 	}
 	else cout << "Wert muss zwischen 0-100 liegen!" << endl;

@@ -54,7 +54,6 @@ void headerzeichnen() {
 	}
 
 void MTB::ausgeben() {
-	//headerzeichnen();
 	cout << endl;
 	ausgabeElement("MTB", 15);
 	ausgabeElement(getMarke(), 15);
@@ -70,7 +69,7 @@ void E_Bike::ausgeben() {
 	//ausgabeElement("Kapazitaet[Wh]", 0);
 	cout << endl;
 
-	ausgabeElement("MTB", 15);
+	ausgabeElement("E-Bike", 15);
 	ausgabeElement(getMarke(), 15);
 	ausgabeElement(getModell(), 15);
 	ausgabeElement(getModellJahr(), 15);

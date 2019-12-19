@@ -46,8 +46,8 @@ int main(void) {
 			Katalog.sucheTyp(eingabeTyp);
 			break;
 		case 4:
-			cout << "Welches Modell ausgeben? ";
-			cin >> eingabeFahrrad;
+			//cout << "Welches Modell ausgeben? ";
+			//cin >> eingabeFahrrad;
 			Katalog.sucheModell(eingabeFahrrad);
 			break;
 		case 5:
